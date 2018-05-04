@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -46,6 +47,16 @@ public class ListaMoto extends AppCompatActivity
             }
         });
 
+        listaMotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Moto moto = (Moto) listaMotos.getItemAtPosition(position);
+                Intent intentDetalhemoto = new Intent(ListaMoto.this, DetalheMoto.class);
+                intentDetalhemoto.putExtra("moto", moto);
+                startActivity(intentDetalhemoto);
+            }
+        });
+
         /*
                 Editar pode ser nesse método ou no onCreateContextMenu
         listaMotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -82,18 +93,19 @@ public class ListaMoto extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.lista_moto, menu);
-        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_detalhe_moto, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.menu_retorna_principal:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
