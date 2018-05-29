@@ -32,4 +32,7 @@
     <string name="lbl_ano">Ano:</string>
     <string name="lbl_cilindrada">Cilindrada:</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

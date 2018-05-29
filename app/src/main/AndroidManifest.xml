@@ -27,8 +27,9 @@
             android:name=".ListaMoto"
             android:label="@string/title_activity_lista_moto"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DetalheMoto">
-        </activity>
+        <activity android:name=".DetalheMoto" />
+        <activity android:name=".ListaTreino" />
+        <activity android:name=".DetalheTreino"></activity>
     </application>
 
 </manifest>
