@@ -9,7 +9,7 @@
 
     <!--Itens do drawerLayout-->
     <string name="cadastrar_moto_menu">Cadastrar Moto</string>
-    <string name="treinos_menu">Treinos</string>
+    <string name="autodromos_menu">Autódromos</string>
     <string name="cronometragem_menu">Cronometragem</string>
     <string name="configuracoes_menu">Configurações</string>
     <string name="lista_motos_menu">Lista de Motos</string>
@@ -34,5 +34,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="title_activity_lista_motos2">ListaMotosActivity2</string>
 </resources>
+

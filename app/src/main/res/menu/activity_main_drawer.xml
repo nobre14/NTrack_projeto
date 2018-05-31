@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_list_black_24dp"
             android:title="@string/lista_motos_menu" />
         <item
-            android:id="@+id/treinos_menu"
-            android:icon="@drawable/ic_local_library_black_24dp"
-            android:title="@string/treinos_menu" />
+            android:id="@+id/autodromos_menu"
+            android:icon="@drawable/ic_map_black_24dp"
+            android:title="@string/autodromos_menu" />
         <item
             android:id="@+id/cronometragem_menu"
             android:icon="@drawable/ic_timer_black_24dp"

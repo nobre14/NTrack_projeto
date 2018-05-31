@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nobre.n_track">
+    package="com.example.nobre.ntrack">
 
     <application
         android:allowBackup="true"
@@ -20,16 +20,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FormularioCadastroMoto"
-            android:label="@string/title_activity_formulario_cadastro_moto"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ListaMoto"
+            android:name=".ListaMotoActivity"
             android:label="@string/title_activity_lista_moto"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DetalheMoto" />
-        <activity android:name=".ListaTreino" />
-        <activity android:name=".DetalheTreino"></activity>
+        <activity android:name=".FormularioCadastroMotoActivity" />
+        <activity android:name=".DetalheMotoActivity"></activity>
     </application>
 
 </manifest>
