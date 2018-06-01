@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.nobre.ntrack.fragment.PromptDialogFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -61,7 +63,9 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Toast.makeText(this, "Clicou no settings", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.dialog_fragment_item){
+            mostraDialog();
         }
 
         return super.onOptionsItemSelected(item);
@@ -80,7 +84,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, ListaMotoActivity.class);
             startActivity(intent);
         } else if (id == R.id.autodromos_menu) {
-            Toast.makeText(this, "Clicou no menu autodromo", Toast.LENGTH_SHORT).show();
+            Intent vaiParaAListaAutodromo = new Intent(this, ListaAutodromoActivity.class);
+            startActivity(vaiParaAListaAutodromo);
         } else if (id == R.id.cronometragem_menu) {
             Toast.makeText(this, "Clicou no Cronometragem", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.configuracoes_menu) {
@@ -96,5 +101,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void mostraDialog(){
+        PromptDialogFragment dialog = new PromptDialogFragment();
+        dialog.setCancelable(true);
+        dialog.show(getSupportFragmentManager(), "tag");
     }
 }

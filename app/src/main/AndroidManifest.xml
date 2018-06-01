@@ -24,7 +24,8 @@
             android:label="@string/title_activity_lista_moto"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FormularioCadastroMotoActivity" />
-        <activity android:name=".DetalheMotoActivity"></activity>
+        <activity android:name=".DetalheMotoActivity" />
+        <activity android:name=".ListaAutodromoActivity"></activity>
     </application>
 
 </manifest>

@@ -32,8 +32,8 @@
     <string name="lbl_ano">Ano:</string>
     <string name="lbl_cilindrada">Cilindrada:</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_lista_motos2">ListaMotosActivity2</string>
+    <!-- Fragment -->
+    <string name="titulo_autodromo">Autódromo</string>
+    <string name="btn_avalia_autodromo">Avaliar</string>
 </resources>
 
