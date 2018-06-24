@@ -35,5 +35,6 @@
     <!-- Fragment -->
     <string name="titulo_autodromo">Autódromo</string>
     <string name="btn_avalia_autodromo">Avaliar</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
 

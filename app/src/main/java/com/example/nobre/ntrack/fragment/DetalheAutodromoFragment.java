@@ -10,8 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nobre.ntrack.ListaAutodromoActivity;
 import com.example.nobre.ntrack.R;
 import com.example.nobre.ntrack.modelo.Autodromo;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class DetalheAutodromoFragment extends Fragment {
 
@@ -21,6 +25,7 @@ public class DetalheAutodromoFragment extends Fragment {
     private TextView campoPercurso;
     private TextView campoSite;
     private Autodromo autodromo;
+
     public DetalheAutodromoFragment() {
     }
 

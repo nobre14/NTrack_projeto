@@ -53,16 +53,20 @@ public class ListaAutodromoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_detalhe_moto, menu);
+        inflater.inflate(R.menu.menu_autodromos, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_retorna_principal:
+            case R.id.menu_autodromo_retorna_principal:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.icone_mapa_autodromos:
+                Intent intentVaiParaOMapa = new Intent(this, MapaActivity.class);
+                startActivity(intentVaiParaOMapa);
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "568433844953",
+    "firebase_url": "https://n-track-entrega.firebaseio.com",
+    "project_id": "n-track-entrega",
+    "storage_bucket": "n-track-entrega.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568433844953:android:77e807daf9ba96b1",
+        "android_client_info": {
+          "package_name": "com.example.nobre.ntrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568433844953-tfq0pjl86p7mcuvg8f7plpvddmjqtvnl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nobre.ntrack",
+            "certificate_hash": "427068766b4e1900871b617a775b22b7d386d907"
+          }
+        },
+        {
+          "client_id": "568433844953-44oovarhggm8ob3oa6tuqpqj3m6nhpdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-Pj-UFmnLGDIX9rUpme55to-v8pUroIw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568433844953-44oovarhggm8ob3oa6tuqpqj3m6nhpdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

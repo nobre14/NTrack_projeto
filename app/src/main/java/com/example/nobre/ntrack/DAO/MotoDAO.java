@@ -15,20 +15,25 @@ public class MotoDAO extends SQLiteOpenHelper{
 
 
     public MotoDAO(Context context) {
-        super(context, "NTrack", null, 1);
+        super(context, "NTrack", null, 8);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE Moto(id INTEGER PRIMARY KEY, marca TEXT NOT NULL," +
                 " modelo TEXT NOT NULL, ano INTEGER NOT NULL, cilindrada INTEGER NOT NULL);";
+
+        String sqlMarcas = "CREATE TABLE Marcas(id INTEGER PRIMARY KEY, nomeMarca TEXT NOT NULL);";
         db.execSQL(sql);
+        db.execSQL(sqlMarcas);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE IF EXISTS Moto;";
+        String sqlMarcas = "DROP TABLE IF EXISTS Marcas;";
         db.execSQL(sql);
+        db.execSQL(sqlMarcas);
         onCreate(db);
     }
 
@@ -77,5 +82,27 @@ public class MotoDAO extends SQLiteOpenHelper{
         ContentValues dados = pegaDadosMoto(moto);
         String[] parametros = {moto.getId().toString()};
         db.update("Moto", dados, "id = ?", parametros);
+    }
+
+    public List<String> buscarMarcas() {
+        String sql = "SELECT * FROM Marcas;";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        List<String> marcas = new ArrayList<>();
+        String marca;
+        while (c.moveToNext()){
+            marca = c.getString(c.getColumnIndex("nomeMarca"));
+            marcas.add(marca);
+        }
+        c.close();
+        return marcas;
+    }
+
+    public void insertMarcas(String marca){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues dados = new ContentValues();
+        dados.put("nomeMarca", marca);
+        db.insert("Marcas", null, dados);
     }
 }

@@ -13,26 +13,31 @@ import android.widget.Toast;
 
 import com.example.nobre.ntrack.modelo.Moto;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetalheMotoActivity extends AppCompatActivity {
+
+    @BindView(R.id.txtMarcaDetalheMoto) TextView marca;
+    @BindView(R.id.txtModeloDetalheMoto) TextView modelo;
+    @BindView(R.id.txtAnoDetalheMoto) TextView ano;
+    @BindView(R.id.txtCilindradaDetalheMoto) TextView cilindrada;
+    @BindView(R.id.btnCompartilharDetalhes) FloatingActionButton botaoCompartilha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe_moto);
+
+        ButterKnife.bind(this);
         Intent intent = getIntent();
         final Moto moto = (Moto) intent.getSerializableExtra("moto");
-
-        TextView marca = (TextView) findViewById(R.id.txtMarcaDetalheMoto);
-        TextView modelo = (TextView) findViewById(R.id.txtModeloDetalheMoto);
-        TextView ano = (TextView) findViewById(R.id.txtAnoDetalheMoto);
-        TextView cilindrada = (TextView) findViewById(R.id.txtCilindradaDetalheMoto);
 
         marca.setText(moto.getMarca());
         modelo.setText(moto.getModelo());
         ano.setText(String.valueOf(moto.getAno()));
         cilindrada.setText(String.valueOf(moto.getCilndrada()));
 
-        FloatingActionButton botaoCompartilha = (FloatingActionButton) findViewById(R.id.btnCompartilharDetalhes);
         botaoCompartilha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

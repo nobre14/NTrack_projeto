@@ -11,24 +11,30 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.nobre.ntrack.DAO.MotoDAO;
 import com.example.nobre.ntrack.helper.CadastroMotoHelper;
 import com.example.nobre.ntrack.modelo.Moto;
+import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class FormularioCadastroMotoActivity extends AppCompatActivity {
+
+    @BindView(R.id.spnMarcaMoto) Spinner spinner;
 
     private CadastroMotoHelper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_cadastro_moto);
-
+        ButterKnife.bind(this);
         helper = new CadastroMotoHelper(FormularioCadastroMotoActivity.this);
-        Spinner spinner = (Spinner)findViewById(R.id.spnMarcaMoto);
-        String[] marcas = {"Marca", "Suzuki", "Yamaha", "Honda", "Kawazaki"};
+
+        MotoDAO motoDao = new MotoDAO(this);
+        List<String> marcas = motoDao.buscarMarcas();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, marcas);
         spinner.setAdapter(adapter);
+        motoDao.close();
 
         Intent intent = getIntent(); // pega os dados que vem da lista
         Moto moto = (Moto)intent.getSerializableExtra("moto");
@@ -53,6 +59,12 @@ public class FormularioCadastroMotoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 

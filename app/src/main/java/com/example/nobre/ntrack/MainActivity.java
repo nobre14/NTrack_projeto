@@ -2,9 +2,6 @@ package com.example.nobre.ntrack;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,33 +10,55 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.nobre.ntrack.DAO.MotoDAO;
+import com.example.nobre.ntrack.asyncTask.MarcasTask;
 import com.example.nobre.ntrack.fragment.PromptDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @BindView(R.id.drawer_layout) DrawerLayout drawer;
+    @BindView(R.id.nav_view) NavigationView navigationView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.capa_main_activity) ImageView capa;
+
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        autenticacao = FirebaseAuth.getInstance();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        MotoDAO motoDAO = new MotoDAO(this);
+        if(motoDAO.buscarMarcas().size() < 4) {
+            MarcasTask marcasTask = new MarcasTask(this);
+            marcasTask.execute();
+        }
+        motoDAO.close();
+        Picasso.get().load("https://github.com/nobre14/Ntrack/blob/master/OChacal%C2%AEMK3_0066_Rafael_Nobre.jpg?raw=true").into(capa);
     }
 
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    public void onBackPressed() { ;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -62,9 +81,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Toast.makeText(this, "Clicou no settings", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.dialog_fragment_item){
+        if (id == R.id.dialog_fragment_item){
             mostraDialog();
         }
 
@@ -91,14 +108,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.configuracoes_menu) {
             Toast.makeText(this, "Clicou no Configurações", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.sair_menu) {
-            finish();
+            deslogarUsuario();
         } else if (id == R.id.nav_share) {
             Toast.makeText(this, "Clicou no Compartilhar", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
             Toast.makeText(this, "Clicou no Enviar", Toast.LENGTH_SHORT).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -108,4 +124,12 @@ public class MainActivity extends AppCompatActivity
         dialog.setCancelable(true);
         dialog.show(getSupportFragmentManager(), "tag");
     }
+
+    private void deslogarUsuario(){
+        autenticacao.signOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
